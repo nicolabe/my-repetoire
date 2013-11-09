@@ -5,6 +5,11 @@ public class Record {
   private String artist;
   private String song;
 
+  public Record(String artist, String song) {
+    this.artist = artist;
+    this.artist = song;
+  }
+
   public long getId() {
     return id;
   }
