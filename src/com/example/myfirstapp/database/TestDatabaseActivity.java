@@ -16,7 +16,8 @@ public class TestDatabaseActivity extends SQLiteOpenHelper {
 
 	  // Database creation sql statement
 	  private static final String DATABASE_CREATE = "create table " 
-	  	   + TABLE_RECORDS + "(" + COLUMN_ID
+	  	   + TABLE_RECORDS 
+	  	   + "(" + COLUMN_ID
 	       + " integer primary key autoincrement, "
 	       + COLUMN_SONG + " text not null, " 
 	       + COLUMN_ARTIST + " text not null);";
