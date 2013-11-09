@@ -19,8 +19,8 @@ public class TestDatabaseActivity extends SQLiteOpenHelper {
 	  	   + TABLE_RECORDS 
 	  	   + "(" + COLUMN_ID
 	       + " integer primary key autoincrement, "
-	       + COLUMN_SONG + " text not null, " 
-	       + COLUMN_ARTIST + " text not null);";
+	       + COLUMN_ARTIST + " text not null, " 
+	       + COLUMN_SONG + " text not null);";
 
 	  public TestDatabaseActivity(Context context) {
 	    super(context, DATABASE_NAME, null, DATABASE_VERSION);

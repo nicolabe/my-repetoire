@@ -7,7 +7,13 @@ public class Record {
 
   public Record(String artist, String song) {
     this.artist = artist;
-    this.artist = song;
+    this.song = song;
+  }
+  
+  public Record(long id, String artist, String song) {
+	  this.id = id;
+	  this.artist = artist;
+	  this.song = song;
   }
 
   public long getId() {

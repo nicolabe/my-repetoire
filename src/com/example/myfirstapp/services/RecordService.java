@@ -42,6 +42,30 @@ public class RecordService {
         null, null, null);
     cursor.close();
   }
+  
+  public List<Record> getRecords(){
+	  List<Record> records = new ArrayList<Record>();
+	  Cursor cursor = database.query(
+			  TestDatabaseActivity.TABLE_RECORDS, allColumns, null, null, null, null, null);
+	  
+	  cursor.moveToFirst();
+	  while(!cursor.isAfterLast()){
+		  Record record = cursorToRecord(cursor);
+		  records.add(record);
+		  cursor.moveToNext();
+	  }
+	  cursor.close();
+	  return records;
+  }
+  
+  private Record cursorToRecord(Cursor cursor){
+	  int indexOfArtist = 1;
+	  int indexOfSong = 2;
+	  return new Record(
+			  cursor.getLong(0), 
+			  cursor.getString(indexOfArtist), 
+			  cursor.getString(indexOfSong));
+  }
 
   // public void deleteComment(Comment comment) {
   //   long id = comment.getId();

@@ -1,17 +1,17 @@
 package com.example.myfirstapp;
 
-import android.app.Activity;
+import java.util.List;
+
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MenuInflater;
-import android.content.Intent;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import com.example.myfirstapp.services.RecordService;
-import com.example.myfirstapp.database.Record;
 
-public class MainActivity extends Activity
+import com.example.myfirstapp.database.Record;
+import com.example.myfirstapp.services.RecordService;
+
+public class MainActivity extends ListActivity
 {
     private RecordService datasource;
 
@@ -24,14 +24,29 @@ public class MainActivity extends Activity
 
         datasource = new RecordService(this);
         datasource.open();
+        
+        List<Record> records = datasource.getRecords();
+        
+        ArrayAdapter<Record> adapter = new ArrayAdapter<Record>(
+        		this, android.R.layout.simple_list_item_1, records);
+        setListAdapter(adapter);
     }
 
     public void sendMessage(View view){
         EditText artistName = (EditText) findViewById(R.id.artist_name);
     	EditText songName = (EditText) findViewById(R.id.song_name);
-        Record record = new Record(artistName.toString(), 
-                                   songName.toString());
+        Record record = new Record(artistName.getText().toString(), 
+                                   songName.getText().toString());
         datasource.storeRecord(record);
+        
+        updateRecordAdapter(record);
+    }
+    
+    private void updateRecordAdapter(Record record){
+    	@SuppressWarnings("unchecked")
+		ArrayAdapter<Record> adapter = (ArrayAdapter<Record>) getListAdapter();
+    	adapter.add(record);
+    	adapter.notifyDataSetChanged();
     }
 
     // @Override
