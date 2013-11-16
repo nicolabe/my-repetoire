@@ -3,10 +3,16 @@ package com.example.myfirstapp;
 import java.util.List;
 
 import android.app.ListActivity;
+import android.widget.ListView;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView; 
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+// These may be removed
+import android.widget.TextView; 
+import android.widget.Toast;     
 
 import com.example.myfirstapp.database.Record;
 import com.example.myfirstapp.services.RecordService;
@@ -22,14 +28,26 @@ public class MainActivity extends ListActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        ListView listView1 = (ListView) findViewById(android.R.id.list);
         datasource = new RecordService(this);
         datasource.open();
         
         List<Record> records = datasource.getRecords();
         
         ArrayAdapter<Record> adapter = new ArrayAdapter<Record>(
-        		this, android.R.layout.simple_list_item_1, records);
+        		this, android.R.layout.simple_list_item_activated_1, records);
         setListAdapter(adapter);
+
+
+        listView1.setOnItemClickListener(new OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position,
+        		long id) {
+
+             String item = ((TextView)view).getText().toString();
+
+             Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
+        }});
     }
 
     public void sendMessage(View view){

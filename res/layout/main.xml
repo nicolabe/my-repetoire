@@ -19,11 +19,11 @@
     	android:onClick="sendMessage" />
     <TextView android:id="@+id/text"
         android:paddingLeft="16dp"
-        android:textSize="32dp"
+        android:textSize="32sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/add_record"
-        android:text="Songs you know:" />
+        android:text="@string/song_list_title" />
     <ListView
         android:id="@android:id/list"
         android:paddingLeft="32dp"
