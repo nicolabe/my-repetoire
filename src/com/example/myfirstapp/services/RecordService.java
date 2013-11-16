@@ -57,6 +57,15 @@ public class RecordService {
 	  cursor.close();
 	  return records;
   }
+
+  public Record getRecord(String record_id) {
+	  Cursor cursor = database.query(TestDatabaseActivity.TABLE_RECORDS,
+		        allColumns, TestDatabaseActivity.COLUMN_ID + " = " + record_id, null,
+		        null, null, null);
+	  Record record = cursorToRecord(cursor);
+	  cursor.close();
+	  return record;
+  }
   
   private Record cursorToRecord(Cursor cursor){
 	  int indexOfArtist = 1;
