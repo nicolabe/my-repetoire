@@ -48,7 +48,7 @@ public class MainActivity extends ListActivity
 //             Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
         	// Try to find another way to get the record instance
         	Record record = datasource.getRecords().get(position);
-        	Intent intent = new Intent(MainActivity.this, DisplayRecordActivity.class);
+        	Intent intent = new Intent(MainActivity.this, ShowRecordActivity.class);
         	intent.putExtra("RecordId", String.valueOf(record.getId()));
         	startActivity(intent);
         }});

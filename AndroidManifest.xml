@@ -15,7 +15,7 @@
             </intent-filter>
         </activity>
         <activity
-                  android:name="com.example.myfirstapp.DisplayRecordActivity"
+                  android:name="com.example.myfirstapp.ShowRecordActivity"
                   android:label="@string/title_activity_display_record"
                   android:parentActivityName="com.example.myfirstapp.MainActivity" >
                   <meta-data

@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class TestDatabaseActivity extends SQLiteOpenHelper {
+public class RecordDBInitialize extends SQLiteOpenHelper {
 	  public static final String TABLE_RECORDS = "records";
 	  public static final String COLUMN_ID = "_id";
 	  public static final String COLUMN_SONG = "song";
@@ -22,7 +22,7 @@ public class TestDatabaseActivity extends SQLiteOpenHelper {
 	       + COLUMN_ARTIST + " text not null, " 
 	       + COLUMN_SONG + " text not null);";
 
-	  public TestDatabaseActivity(Context context) {
+	  public RecordDBInitialize(Context context) {
 	    super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	  }
 
@@ -33,7 +33,7 @@ public class TestDatabaseActivity extends SQLiteOpenHelper {
 
 	  @Override
 	  public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-	    Log.w(TestDatabaseActivity.class.getName(),
+	    Log.w(RecordDBInitialize.class.getName(),
 	        "Upgrading database from version " + oldVersion + " to "
 	            + newVersion + ", which will destroy all old data");
 	    db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECORDS);
