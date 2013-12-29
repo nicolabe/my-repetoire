@@ -76,11 +76,11 @@ public class RecordService {
   
   private Record cursorToRecord(Cursor cursor){
 	  int indexOfId = 0;
-	  int indexOfArtist = 1;
-	  int indexOfSong = 2;
+	  int indexOfSong = 1;
+	  int indexOfArtist = 2;
 	  long id = cursor.getLong(indexOfId);
 	  String artist = cursor.getString(indexOfArtist);
-	  String song = cursor.getString(indexOfSong);	  
+	  String song = cursor.getString(indexOfSong);
 	  return new Record(id, artist, song);
   }
 
@@ -89,5 +89,15 @@ public class RecordService {
      Log.i(TAG, "Record deleted with id: " + id);
      database.delete(RecordDBInitialize.TABLE_RECORDS, RecordDBInitialize.COLUMN_ID
          + " = " + id, null);
+   }
+   
+   public void updateRecord(Record record) {
+	 long id = record.getId();
+	 Log.i(TAG, "Record with id " + id + " updated with artist " 
+		+ record.getArtist() + " and song " + record.getSong());
+	 ContentValues cv = new ContentValues();
+	 cv.put(RecordDBInitialize.COLUMN_ARTIST, record.getArtist());
+	 cv.put(RecordDBInitialize.COLUMN_SONG, record.getSong());
+	 database.update(RecordDBInitialize.TABLE_RECORDS, cv, "_id = " + id, null);
    }
 } 

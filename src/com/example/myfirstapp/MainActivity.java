@@ -6,6 +6,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.widget.ListView;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView; 
 import android.widget.AdapterView.OnItemClickListener;
@@ -13,12 +14,15 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
  
 
+
+
 import com.example.myfirstapp.database.Record;
 import com.example.myfirstapp.services.RecordService;
 
 public class MainActivity extends ListActivity
 {
     private RecordService datasource;
+    private static final String TAG = "DisplayRecord";
 
     /** Called when the activity is first created. */
     @Override
@@ -54,7 +58,7 @@ public class MainActivity extends ListActivity
         }});
     }
 
-    public void sendMessage(View view){
+    public void createRecord(View view){
         EditText artistName = (EditText) findViewById(R.id.artist_name);
     	EditText songName = (EditText) findViewById(R.id.song_name);
         Record record = new Record(artistName.getText().toString(), 

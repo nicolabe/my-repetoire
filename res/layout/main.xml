@@ -16,7 +16,7 @@
     	android:layout_height="wrap_content"
     	android:text="@string/button_send"
         android:layout_below="@id/song_name"
-    	android:onClick="sendMessage" />
+    	android:onClick="createRecord" />
     <TextView android:id="@+id/text"
         android:paddingLeft="16dp"
         android:textSize="32sp"
