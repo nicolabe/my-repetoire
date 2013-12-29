@@ -8,8 +8,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import com.example.myfirstapp.database.TestDatabaseActivity;
 import com.example.myfirstapp.database.Record;	
+
+
 
 public class RecordService {
 
@@ -18,7 +22,8 @@ public class RecordService {
   private TestDatabaseActivity dbHelper;
   private String[] allColumns = { TestDatabaseActivity.COLUMN_ID,
       TestDatabaseActivity.COLUMN_SONG, TestDatabaseActivity.COLUMN_ARTIST };
-
+  private static final String TAG = "Record";
+  
   public RecordService(Context context) {
     dbHelper = new TestDatabaseActivity(context);
   }
@@ -59,51 +64,30 @@ public class RecordService {
   }
 
   public Record getRecord(String record_id) {
+	  String record_id_query = TestDatabaseActivity.COLUMN_ID + " = " + record_id;
 	  Cursor cursor = database.query(TestDatabaseActivity.TABLE_RECORDS,
-		        allColumns, TestDatabaseActivity.COLUMN_ID + " = " + record_id, null,
+		        allColumns, record_id_query, null,
 		        null, null, null);
+	  cursor.moveToFirst();
 	  Record record = cursorToRecord(cursor);
 	  cursor.close();
 	  return record;
   }
   
   private Record cursorToRecord(Cursor cursor){
+	  int indexOfId = 0;
 	  int indexOfArtist = 1;
 	  int indexOfSong = 2;
-	  return new Record(
-			  cursor.getLong(0), 
-			  cursor.getString(indexOfArtist), 
-			  cursor.getString(indexOfSong));
+	  long id = cursor.getLong(indexOfId);
+	  String artist = cursor.getString(indexOfArtist);
+	  String song = cursor.getString(indexOfSong);	  
+	  return new Record(id, artist, song);
   }
 
-  // public void deleteComment(Comment comment) {
-  //   long id = comment.getId();
-  //   System.out.println("Comment deleted with id: " + id);
-  //   database.delete(MySQLiteHelper.TABLE_COMMENTS, MySQLiteHelper.COLUMN_ID
-  //       + " = " + id, null);
-  // }
-
-  // public List<Comment> getAllComments() {
-  //   List<Comment> comments = new ArrayList<Comment>();
-
-  //   Cursor cursor = database.query(MySQLiteHelper.TABLE_COMMENTS,
-  //       allColumns, null, null, null, null, null);
-
-  //   cursor.moveToFirst();
-  //   while (!cursor.isAfterLast()) {
-  //     Comment comment = cursorToComment(cursor);
-  //     comments.add(comment);
-  //     cursor.moveToNext();
-  //   }
-  //   // make sure to close the cursor
-  //   cursor.close();
-  //   return comments;
-  // }
-
-  // private Comment cursorToComment(Cursor cursor) {
-  //   Comment comment = new Comment();
-  //   comment.setId(cursor.getLong(0));
-  //   comment.setComment(cursor.getString(1));
-  //   return comment;
-  // }
+   public void deleteRecord(Record record) {
+     long id = record.getId();
+     Log.i(TAG, "Record deleted with id: " + id);
+     database.delete(TestDatabaseActivity.TABLE_RECORDS, TestDatabaseActivity.COLUMN_ID
+         + " = " + id, null);
+   }
 } 

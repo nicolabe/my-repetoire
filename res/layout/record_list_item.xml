@@ -2,14 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <EditText android:id="@+id/artist_name"
+    <EditText android:id="@+id/edit_artist_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/artist_name" />
-    <EditText android:id="@+id/song_name"
+    <EditText android:id="@+id/edit_song_name"
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
-        android:layout_below="@id/artist_name"
+        android:layout_below="@id/edit_artist_name"
     	android:hint="@string/song_name" />
 
     <Button
@@ -17,12 +17,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/song_name"
+        android:layout_below="@+id/edit_song_name"
         android:onClick="update"
         android:text="@string/button_update" />
 
     <Button
-        android:id="@+id/Delete"
+        android:id="@+id/delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/update"

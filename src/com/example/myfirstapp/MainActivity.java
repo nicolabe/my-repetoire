@@ -62,6 +62,7 @@ public class MainActivity extends ListActivity
         datasource.storeRecord(record);
         
         updateRecordAdapter(record);
+        clearFields(artistName, songName);
     }
     
     private void updateRecordAdapter(Record record){
@@ -70,35 +71,10 @@ public class MainActivity extends ListActivity
     	adapter.add(record);
     	adapter.notifyDataSetChanged();
     }
-
-    // @Override
-    // public boolean onCreateOptionsMenu(Menu menu) {
-    //     // Inflate the menu items for use in the action bar
-    //     MenuInflater inflater = getMenuInflater();
-    //     inflater.inflate(R.layout.main_activity_actions, menu);
-    //     return super.onCreateOptionsMenu(menu);
-    // }
-
-    // @Override
-    // public boolean onOptionsItemSelected(MenuItem item) {
-    //     // Handle presses on the action bar items
-    //     switch (item.getItemId()) {
-    //         case R.id.action_search:
-    //             openSearch();
-    //             return true;
-    //         case R.id.action_settings:
-    //             openSettings();
-    //             return true;
-    //         default:
-    //             return super.onOptionsItemSelected(item);
-    //     }
-    // }
-
-    // public void openSearch(){
-    //     // do something
-    // }
-
-    // public void openSettings(){
-    //     // do something else
-    // }
+    
+    private void clearFields(EditText... dictText) {
+    	for(EditText field: dictText){
+    		field.setText("");
+    	}
+    }
 }
