@@ -2,13 +2,12 @@
 <resources>
     <string name="app_name">My Repetoire</string>
     <string name="artist_name">Artist</string>
-    <string name="song_name">Sang</string>
-    <string name="button_send">Lagre</string>
-    <string name="button_update">Oppdater</string>
-    <string name="button_delete">Slett</string>
+    <string name="song_name">Song title</string>
+    <string name="button_send">Save</string>
+    <string name="button_update">Update</string>
+    <string name="button_delete">Delete</string>
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
-    <string name="emptyText">Fjern</string>
-    <string name="title_activity_display_record">Lagret sang</string>
-    <string name="song_list_title">Sanger du kan:</string>
+    <string name="title_activity_display_record">Records</string>
+    <string name="song_list_title">Songs you know:</string>
 </resources>
