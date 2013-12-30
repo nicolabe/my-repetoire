@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ShowRecordActivity extends Activity {
 	
@@ -41,11 +42,15 @@ public class ShowRecordActivity extends Activity {
 	
 	public void update(View view) {
 		Log.i(TAG, "Updating record");
-    	record.setArtist(artistName.getText().toString());
-    	record.setSong(songName.getText().toString());
+		String artist = artistName.getText().toString();
+		String song = songName.getText().toString();
+    	record.setArtist(artist);
+    	record.setSong(song);
     	datasource.updateRecord(record);
 		Intent intent = new Intent(ShowRecordActivity.this, MainActivity.class);
 		startActivity(intent);
+		Toast.makeText(getBaseContext(), 
+				"Updated record to artist: " + artist + " and song title: " + song + ".", Toast.LENGTH_LONG).show();
 	}
 	
 	public void delete(View view) {
@@ -53,6 +58,8 @@ public class ShowRecordActivity extends Activity {
 		datasource.deleteRecord(record);
 		Intent intent = new Intent(ShowRecordActivity.this, MainActivity.class);
 		startActivity(intent);
+		Toast.makeText(getBaseContext(), 
+				"Deleted record with id " + record.getId() + ".", Toast.LENGTH_LONG).show();
 	}
 	
 	

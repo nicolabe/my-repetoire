@@ -12,9 +12,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
- 
-
-
+import android.widget.Toast;
 
 import com.example.myfirstapp.database.Record;
 import com.example.myfirstapp.services.RecordService;
@@ -46,10 +44,6 @@ public class MainActivity extends ListActivity
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,
         		long id) {
-
-//             String item = ((TextView)view).getText().toString();
-//
-//             Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
         	// Try to find another way to get the record instance
         	Record record = datasource.getRecords().get(position);
         	Intent intent = new Intent(MainActivity.this, ShowRecordActivity.class);
@@ -61,12 +55,15 @@ public class MainActivity extends ListActivity
     public void createRecord(View view){
         EditText artistName = (EditText) findViewById(R.id.artist_name);
     	EditText songName = (EditText) findViewById(R.id.song_name);
-        Record record = new Record(artistName.getText().toString(), 
-                                   songName.getText().toString());
+    	String artist = artistName.getText().toString();
+    	String song = songName.getText().toString(); 
+        Record record = new Record(artist, song);
         datasource.storeRecord(record);
         
         updateRecordAdapter(record);
         clearFields(artistName, songName);
+        Toast.makeText(getBaseContext(), 
+				"Created record with artist: " + artist + " and song title: " + song + ".", Toast.LENGTH_LONG).show();
     }
     
     private void updateRecordAdapter(Record record){
